@@ -1,0 +1,13 @@
+version: '3'
+services:
+  api:
+    image: github-tools
+    build: .
+    env_file:
+    - .env
+    ports:
+     - "4000:3000"
+    volumes:
+     - ./:/api/
+     - /api/node_modules
+    entrypoint: ['yarn', 'start']
