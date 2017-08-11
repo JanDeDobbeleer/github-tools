@@ -22,7 +22,13 @@ GitHub.setCommitStatus = function(repo_name, sha, state, description, context) {
 };
 
 GitHub.getPullRequestCommits = function(repo_name, pr_number, callback) {
-    github.client(process.env.GITHUB_API_KEY).get(` /repos/${repo_name}/pulls/${pr_number}/commits`, {}, function(err, status, body, headers) {
+    github.client(process.env.GITHUB_API_KEY).get(`/repos/${repo_name}/pulls/${pr_number}/commits`, {}, function(err, status, body, headers) {
+        callback(body);
+    });
+}
+
+GitHub.getPullRequestFiles = function(repo_name, pr_number, callback) {
+    github.client(process.env.GITHUB_API_KEY).get(`/repos/${repo_name}/pulls/${pr_number}/files`, {}, function(err, status, body, headers) {
         callback(body);
     });
 }

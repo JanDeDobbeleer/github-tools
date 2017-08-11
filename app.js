@@ -4,6 +4,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var xhub = require('express-x-hub');
 var fixup = require('./modules/fixup');
+var requirements = require('./modules/requirements');
 
 var app = express();
 
@@ -29,6 +30,15 @@ app.get('/', function(req, res) {
 app.post('/github-fixup-hook', function(req, res) {
     authenticateAndRespond(req, res, function() {
         fixup.checkFixupCommits(
+            req.body.pull_request.number,
+            req.body.pull_request.head.repo.full_name,
+            req.body.pull_request.head.sha);
+    });
+});
+
+app.post('/github-requirements-hook', function(req, res) {
+    authenticateAndRespond(req, res, function() {
+        requirements.verifyForInvalidVersionUpgrades(
             req.body.pull_request.number,
             req.body.pull_request.head.repo.full_name,
             req.body.pull_request.head.sha);
