@@ -14,7 +14,7 @@ Fixup.checkFixupCommits = function(pr_number, repo_name, sha) {
         var state = "success";
         var description = "no fixups found, you're good to go!";
         if (fixups.length > 0) {
-            state = "error";
+            state = "failure";
             description = `found ${fixups.length} fixup ` + (fixups.length > 1 ? 'commits' : 'commit');
         }
         github.setCommitStatus(repo_name, sha, state, description, 'github-tools/fixup');
