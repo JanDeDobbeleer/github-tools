@@ -16,7 +16,7 @@ function pushInvalidLines(patch, invalid_versions) {
             if (!clean_line || clean_line.startsWith('#')) { return; }
             // only take violations to the PEP 440 rule (https://stackoverflow.com/questions/37972029/regex-to-match-pep440-compliant-version-strings)
             // and allow eggs
-            var regex = 'git\\+ssh:\\/\\/git@[\\S]+\.[\\S]+@[\\d]+\.[\\d]+(?:\\.[\\d]+)?#egg=[\\S]+|[\\S]+==(?:\\d+!)?\\d+(?:\\.\\d+)(?:\\.\\d+)?(?:[\\.\\-\\_](?:a(?:lpha)?|b(?:eta)?|c|r(?:c|ev)?|pre(?:view)?)\\d*)?(?:\\.?(?:post|dev)\\d*)?'
+            var regex = 'git\\+ssh:\\/\\/git@[\\S]+\.[\\S]+@[\\d]+\.[\\d]+(?:\\.[\\d]+)?#egg=[\\S]+|[\\S]+==(?:\\d+!)?\\d+(?:\\.\\d+)(?:\\.\\d+)?(?:[\\.\\-\\_](?:a(?:lpha)?|b(?:eta)?|c|r(?:c|ev)?|pre(?:view)?)\\d*)?(?:\\.?(?:post|dev)\\d*)?|.*\\s#no-qa'
             var matches = clean_line.match(regex);
             // if there's no match or the line doesn't equal the entire match, it's invalid
             if (!matches || matches[0] !== clean_line) {
