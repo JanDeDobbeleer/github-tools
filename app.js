@@ -24,7 +24,7 @@ var authenticateAndRespond = function(req, res, handler) {
 };
 
 app.get('/', function(req, res) {
-    res.send('hello world');
+    res.send('hello world from GitHub tools!');
 });
 
 app.post('/github-fixup-hook', function(req, res) {

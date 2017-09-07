@@ -6,7 +6,7 @@ services:
     env_file:
     - .env
     ports:
-     - "4000:3000"
+     - "4001:3000"
     volumes:
      - ./:/api/
      - /api/node_modules
