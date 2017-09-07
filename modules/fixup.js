@@ -8,6 +8,7 @@ Fixup.checkFixupCommits = function(pr_number, repo_name, sha) {
     github.getPullRequestCommits(repo_name, pr_number, function(commits) {
         if (!commits) {
             console.error("Something went wrong, commits are not available");
+            return;
         }
         var messages = commits.map(a => a.commit.message);
         var fixups = messages.filter(message => message.startsWith('fixup!') || message.startsWith('squash!'));
