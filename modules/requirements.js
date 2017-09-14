@@ -30,6 +30,7 @@ Requirements.verifyForInvalidVersionUpgrades = function(pr_number, repo_name, sh
     github.getPullRequestFiles(repo_name, pr_number, function(files) {
         if (!files) {
             console.error("Something went wrong, files aren't available");
+            return;
         }
         var state = "success";
         var description = "no requirements.txt issues found, you're good to go!";
