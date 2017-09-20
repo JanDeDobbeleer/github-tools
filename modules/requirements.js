@@ -39,9 +39,9 @@ Requirements.verifyForInvalidVersionUpgrades = function(pr_number, repo_name, sh
         requirements.forEach(function(file) {
             pushInvalidLines(file.patch, invalid_versions);
         }, this);
-        console.debug(invalid_versions.join('\n'));
         // get the patch and verify for syntax changes
         if (invalid_versions.length > 0) {
+            console.log(`Invalid versions in ${repo_name}/${pr_number}:\n${invalid_versions.join('\n')}`);
             state = "failure";
             description = `Found ${invalid_versions.length} invalid requirements.txt ` + (invalid_versions.length > 1 ? 'entries.' : 'entry.');
         }
