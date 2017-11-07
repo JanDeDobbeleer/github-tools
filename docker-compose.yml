@@ -3,6 +3,7 @@ services:
   api:
     image: github-tools
     build: .
+    restart: always
     env_file:
     - .env
     ports:
